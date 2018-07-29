@@ -1,0 +1,43 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Python - The Code Journal</title><description>Python, JavaScript and more</description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>Python - The Code Journal</title><link>http://localhost:2368/</link></image><generator>Ghost 1.25</generator><lastBuildDate>Sun, 29 Jul 2018 17:10:50 GMT</lastBuildDate><atom:link href="http://localhost:2368/tag/python/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Periodic Tor IP Rotation in 10 minutes</title><description>Setting up an anonymous crawling environment using a periodic IP rotation script which rotates TOR IPs periodically.</description><link>http://localhost:2368/periodic-tor-ip-rotation-in-10-minutes/</link><guid isPermaLink="false">5b5d4572550d572610b60770</guid><category>Python</category><category>Crawling</category><category>Scraping</category><category>TOR</category><dc:creator>Abhishek Menon</dc:creator><pubDate>Tue, 19 Jun 2018 14:41:00 GMT</pubDate><media:content url="http://localhost:2368/content/images/2018/07/1_rB3ohibjixfGBtmtQn40PQ.jpeg" medium="image"/><content:encoded>&lt;h3 id="the-approach"&gt;&lt;strong&gt;&lt;strong&gt;The approach&lt;/strong&gt;&lt;/strong&gt;&lt;/h3&gt;&lt;img src="http://localhost:2368/content/images/2018/07/1_rB3ohibjixfGBtmtQn40PQ.jpeg" alt="Periodic Tor IP Rotation in 10 minutes"&gt;&lt;p&gt;We will set up Tor, create a proxy service to tunnel our requests through tor, and use the &lt;code&gt;&lt;a href="https://stem.torproject.org/" rel="noopener"&gt;STEM&lt;/a&gt;&lt;/code&gt; library to rotate the IP periodically.&lt;/p&gt;&lt;h3 id="downloads"&gt;&lt;strong&gt;&lt;strong&gt;Downloads&lt;/strong&gt;&lt;/strong&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;strong&gt;&lt;strong&gt;Proxy Server&lt;/strong&gt;&lt;/strong&gt;: &lt;a href="http://www.privoxy.org/" rel="nofollow noopener"&gt;http://www.privoxy.org/&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;&lt;strong&gt;Tor&lt;/strong&gt;&lt;/strong&gt;: &lt;a href="https://www.torproject.org/download/download-easy.html.en" rel="nofollow noopener"&gt;https://www.torproject.org/download/download-easy.html.e&lt;/a&gt;n&lt;/li&gt;&lt;li&gt;&lt;strong&gt;&lt;strong&gt;Python: &lt;/strong&gt;&lt;/strong&gt;&lt;a href="https://www.python.org/downloads/" rel="nofollow noopener"&gt;https://www.python.org/downloads/&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;&lt;strong&gt;Pip: &lt;/strong&gt;&lt;/strong&gt;&lt;a href="https://pip.pypa.io/en/stable/installing/" rel="nofollow noopener"&gt;https://pip.pypa.io/en/stable/installing/&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;You probably have python and pip already installed. If you don’t, please follow the instructions in the link.&lt;/p&gt;&lt;p&gt;Both Privoxy and Tor has excellent installation guides for all major OSes, please follow that in the link to set it up correctly.&lt;/p&gt;&lt;h3 id="configuration"&gt;&lt;strong&gt;&lt;strong&gt;Configuration&lt;/strong&gt;&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;Open privoxy config &lt;code&gt;sudo vi /usr/local/etc/privoxy/config&lt;/code&gt; (The path might be different for Linux/Windows)&lt;/p&gt;&lt;p&gt;Append the following line. Notice the . in the end.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;forward-socks5   /               127.0.0.1:9150 .&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Restart privoxy&lt;/p&gt;&lt;pre&gt;&lt;code&gt;sudo /path/to/Privoxy/stopPrivoxy.sh
+sudo /path/to/Privoxy/startPrivoxy.sh&lt;/code&gt;&lt;/pre&gt;&lt;h4 id="install-stem-library"&gt;Install stem library&lt;/h4&gt;&lt;p&gt;Stem library will be used for managing Tor using Python.&lt;/p&gt;&lt;p&gt;&lt;code&gt;pip install stem&lt;/code&gt;&lt;/p&gt;&lt;p&gt;Now, find the torrc file of your Tor installation for your respective operating system.&lt;/p&gt;&lt;p&gt;Current location in Mac OSX is:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;~/Library/Application Support/TorBrowser-Data/Tor/torrc&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Once you find it, modify it to add a control port by appending the following lines to the file:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;ControlPort 9051
+## If you enable the controlport, be sure to enable one of these
+## authentication methods, to prevent attackers from accessing it.
+HashedControlPassword 16:872860B76453A77D60CA2BB8C1A7042072093276A3D701AD684053EC4C&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Save the file and restart Tor.&lt;/p&gt;&lt;h3 id="test-the-setup"&gt;Test the setup&lt;/h3&gt;&lt;p&gt;To test your tor setup, use the following script:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;import requests
+from stem import Signal
+from stem.control import Controller
+
+with Controller.from_port(port = 9051) as controller:
+  controller.authenticate()
+  controller.signal(Signal.NEWNYM)
+
+proxies = {
+  "http": "http://127.0.0.1:8118"
+}
+headers = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.73.11 (KHTML, like Gecko) Version/7.0.1 Safari/537.73.11'
+}
+
+r = requests.get("http://icanhazip.com", proxies=proxies, headers=headers)
+print (r.text)&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Everytime you run this, you should see a new IP.&lt;/p&gt;&lt;h3 id="periodic-ip-rotation"&gt;&lt;strong&gt;&lt;strong&gt;Periodic IP rotation&lt;/strong&gt;&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;The following script autorotates the IP periodically. Let’s call this &lt;code&gt;rotate.py&lt;/code&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;import time
+from stem import Signal
+from stem.control import Controller
+
+def main():
+    while True:
+        time.sleep(20)
+        print ("Rotating IP")
+        with Controller.from_port(port = 9051) as controller:
+          controller.authenticate()
+          controller.signal(Signal.NEWNYM)
+
+
+if __name__ == '__main__':
+    main()&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Before you start up your scraper, you can run &lt;code&gt;rotate.py&lt;/code&gt; so that it keeps rotating your Tor IP. In your crawler, use the following proxies and headers to tunnel your requests through the tor proxy.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;proxies = {
+  "http": "http://127.0.0.1:8118"
+}
+
+headers = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.73.11 (KHTML, like Gecko) Version/7.0.1 Safari/537.73.11'
+}
+
+r = requests.get("&amp;lt;request-url&amp;gt;", proxies=proxies, headers=headers)&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;That’s it! You have successfully set up periodic IP rotation. Thanks for reading!&lt;/p&gt;</content:encoded></item></channel></rss>
