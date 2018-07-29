@@ -1,0 +1,399 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Setting up Django Channels on AWS Elastic Beanstalk</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css?v=968d86cab0">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="The Code Journal">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Setting up Django Channels on AWS Elastic Beanstalk">
+    <meta property="og:description" content="Step by step guide to host a Django Channels application on AWS Elastic Beanstalk.">
+    <meta property="og:url" content="http://localhost:2368/setting-up-django-channels-on-aws-elastic-beanstalk/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2018/07/photo-1518481852452-9415b262eba4.jpeg">
+    <meta property="article:published_time" content="2017-11-21T01:25:00.000Z">
+    <meta property="article:modified_time" content="2018-07-29T04:37:35.000Z">
+    <meta property="article:tag" content="Django">
+    <meta property="article:tag" content="AWS">
+    <meta property="article:tag" content="Elastic-Beanstalk">
+    <meta property="article:tag" content="Django-Channels">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Setting up Django Channels on AWS Elastic Beanstalk">
+    <meta name="twitter:description" content="Step by step guide to host a Django Channels application on AWS Elastic Beanstalk.">
+    <meta name="twitter:url" content="http://localhost:2368/setting-up-django-channels-on-aws-elastic-beanstalk/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2018/07/photo-1518481852452-9415b262eba4.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Abhishek Menon">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Django, AWS, Elastic-Beanstalk, Django-Channels">
+    <meta property="og:image:width" content="1080">
+    <meta property="og:image:height" content="720">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "The Code Journal",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Abhishek Menon",
+        "url": "http://localhost:2368/author/abhishek/",
+        "sameAs": []
+    },
+    "headline": "Setting up Django Channels on AWS Elastic Beanstalk",
+    "url": "http://localhost:2368/setting-up-django-channels-on-aws-elastic-beanstalk/",
+    "datePublished": "2017-11-21T01:25:00.000Z",
+    "dateModified": "2018-07-29T04:37:35.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2018/07/photo-1518481852452-9415b262eba4.jpeg",
+        "width": 1080,
+        "height": 720
+    },
+    "keywords": "Django, AWS, Elastic-Beanstalk, Django-Channels",
+    "description": "Step by step guide to host a Django Channels application on AWS Elastic Beanstalk.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="../public/ghost-sdk.js?v=968d86cab0"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "e693bfa48b4d"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="The Code Journal" href="../rss/index.html">
+
+</head>
+<body class="post-template tag-django tag-aws tag-elastic-beanstalk tag-django-channels">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">The Code Journal</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="subscribe-button" href="index.html#subscribe">Subscribe</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-django tag-aws tag-elastic-beanstalk tag-django-channels ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-11-20">20 November 2017</time>
+                        <span class="date-divider">/</span> <a href="../tag/django/">Django</a>
+                </section>
+                <h1 class="post-full-title">Setting up Django Channels on AWS Elastic Beanstalk</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(../content/images/2018/07/photo-1518481852452-9415b262eba4.jpeg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <h1 id="setting-up-django-channels-on-aws-elastic-beanstalk">Setting up Django Channels on AWS Elastic Beanstalk</h1><p><strong><strong>TL;DR</strong></strong></p><p><strong><strong>UPDATE: This tutorial is for Channels 1.X and not for Channels 2.x. Please leave me a note if you guys want to see another tutorial for Channels 2.</strong></strong></p><p>Django has always been one of the outliers in the modern era of real-time, asynchronous frameworks and libraries. If you want to build a chat application, for example, Django, most probably wouldn’t be your first choice. However, for those of you out there who hate JavaScript, or if you’re a “perfectionist with a deadline”, Django Channels presents you with a great option.</p><p>Django Channels is a library which brings the power of asynchronous web to Django. If you aren’t familiar with Django Channels, I highly recommend getting yourself familiarised with it before you read further. There are excellent articles out there explaining what Django Channels is, and how it can transform the way you use Django. These articles by <a href="https://realpython.com/blog/python/getting-started-with-django-channels/" rel="noopener">real python</a> and <a href="https://blog.heroku.com/in_deep_with_django_channels_the_future_of_real_time_apps_in_django" rel="nofollow noopener">heroku</a> are two great examples. It also shows you how to build a basic chat application using Channels. It is fairly straightforward to set up, and will get you going in a few minutes!</p><p><strong><strong>The problems with hosting a Django Channels Application</strong></strong></p><p>In traditional Django, requests are handled by the Django application itself. It looks at the request and URL, determines the correct view function to execute, executes it, produces a response and sends the response back to the user. Fairly straightforward. Django Channels, however, introduces an Interface Server (Daphne) in between. This means that the Interface server now communicates with the outside world. The interface server looks at the request and URL, determines the right “Channel”, process the request and creates a “message” for the worker process to consume, and places the message in that Channel. A message broker, like Redis, listens to these Channels, and delivers the messages to worker processes. The worker process listens to the message queue, processes the message (much like a view function) and produces the response and sends it back to the interface server, which then delivers it back to the user. (Please feel free to take a minute to grasp this, it took me many hours :’))</p><p>This means now, instead of just a single process running, which you would be starting using:</p><p><code>python manage.py runserver</code></p><p>You would be running:</p><p><code>daphne -p 8000 your_app.asgi:channel_layer</code></p><p>and</p><p><code>python manage.py runworker</code></p><p>This enables Django Channels to support multiple types of requests (HTTP, Websockets etc). But clearly, it requires more resources than a standard Django application. For one, it requires a message broker. You can get away with an in memory message broker, but it is not recommended for production purposes. In this example, we will setup Redis in an EC2 instance and use that as the message broker.</p><p>If you’re using Elastic Beanstalk, it is configured to listen to port 80 by default, which is where generally your worker process will be running. But we want the application to listen to Daphne instead, so that would require configuring the Load Balancer to forward requests to the port where Daphne is listening.</p><p>But before all that, we first need to host our Django Application itself. If you are not familiar with how to do that, please follow the steps here:</p><p><a href="https://realpython.com/blog/python/deploying-a-django-app-and-postgresql-to-aws-elastic-beanstalk/"><strong>Deploying Django + Python 3 + PostgreSQL to AWS Elastic Beanstalk</strong></a></p><h4 id="the-only-change-is-that-you-should-select-the-application-load-balancer-instead-of-the-classic-load-balancer-as-websockets-is-only-natively-supported-by-application-load-balancer-">The only change is that you should <strong>select the Application Load Balancer instead of the Classic Load Balancer as WebSockets is only natively supported by Application Load Balancer</strong>.</h4><p></p><p><strong><strong>Next Steps:</strong></strong></p><p>Now we need to provision Redis for the channel layer. We can do this in two ways:</p><p>1.A. Provisioning a Redis Instance from EC2</p><p>1.B. Using ElastiCache</p><p>You can pick either one, but please note that <strong><strong>ElastiCache includes a</strong></strong> <strong><strong>free tier</strong></strong>as of the date of this post. <strong><strong>You just need to do either 1.A or 1.B</strong></strong>.</p><h3 id="1-a-provisioning-a-redis-instance-for-message-broker"><strong><strong>1.A. Provisioning a Redis Instance for message broker</strong></strong></h3><p>Sign in to your AWS console and go to EC2. Click “Launch Instance” on the top and select AWS Marketplace on the side menu.</p><p>Search for Redis 4.0</p><figure class="kg-image-card"><img src="../content/images/2018/07/1_XsKJ8BlqHZwoqPNPMMNpfQ--1--1.png" class="kg-image"></figure><p>After this, follow through the next steps. Please be sure to store the ssh-key (pem file) for the instance. After that, click “Review and Launch”. This will get your Redis instance up and running.</p><p>Now ssh into your Redis instance and open <code>redis.conf</code> file.</p><p><code>sudo nano /jet/etc/redis/redis.conf</code></p><p>Change the address from <code>127.0.0.1</code> to <code>0.0.0.0</code> and port from <code>1999</code> to <code>6379</code></p><p>Save and restart the using:</p><p><code>sudo service restart redis</code></p><p>You can check everything is correctly configured by running <code>netstat -antpl</code></p><p>This command should show Redis running at 0.0.0.0:6379.</p><p>After this, select the instance from EC2 Dashboard, and in the menu below, select it’s security group (this should look something like Redis 4–0–170715-redis_4_0_0-AutogenByAWSMP). Add a new inbound rule with following info:</p><p>Type: Custom TCP Rule, Protocol: TCP, Port Range: 6379, Source: 0.0.0.0/0</p><p>You don’t need to add the above if it already exists or you can just modify the existing line if the port number is different. Now, grab the Public DNS of your Redis instance from EC2 Dashboard and save it for reference.</p><h3 id="1-b-set-up-elasticache-with-redis-instance">1.B. <strong><strong>Set up ElastiCache with Redis instance</strong></strong></h3><p><strong><strong>Credits for this section: </strong></strong><a href="https://medium.com/@cpvandehey"><strong><strong>Chad Van De Hey</strong></strong></a></p><p>Sign into your AWS console and go to the ElastiCache service. Click to create a new ElastiCache cluster or if you have not created anything beforehand, click “Get Started”. We are going to be setting up an EC Redis cluster.</p><p>a. Click Redis as your cluster engine</p><p>b. Enter a name, description and choose the newest Engine version available.</p><p>c. Make sure the port is set to 6379.</p><p>d. Set the node type to the smallest available</p><p>e. Select t2 at the top -&gt; select cache.t2.micro (for free tier)</p><p>f. Select “None” for Number of replicas and unselect “multi-az with auto-failover”.</p><p>g. Either select an existing subnet of your existing choices or create a new one selecting an AZ that is same as your EC2s.</p><p>h. Choose the security group of your EC2s that you created in Elastic Beanstalk.</p><p>i. Unselect “Enable automatic backups” and click “Create”</p><p>You will be redirected to your ElastiCache clusters/instances. Here you will see your instances been spun up and configured. After this process has completed, make sure to note down the url of the ElastiCache instance because you will need to configure your Django app with that later.</p><h3 id="2-editing-the-django-configuration">2. Editing the Django Configuration</h3><p>Now in your <code>settings.py</code> file for production, change your redis host and port to use the newly created Redis instance.</p><pre><code>CHANNEL_LAYERS = {
+ "default": {
+  "BACKEND": "asgi_redis.RedisChannelLayer",
+  "CONFIG": {
+   "hosts": ["redis://(&lt;The Public DNS of the Redis instance&gt;, 6379)"],
+  },
+ "ROUTING": "&lt;your_app&gt;.routing.channel_routing", 
+ }
+}</code></pre><p>Please change &lt;your app&gt; to the name of your app. This will configure your Django application to use the Redis instance we created.</p><h3 id="3-running-daphne-server-and-a-worker-process-as-daemon"><strong><strong>3. Running Daphne Server and a worker process as daemon</strong></strong></h3><p></p><script src="https://gist.github.com/mav-erick/8c8730e6578dc31dc32ee61c9bd9a83d.js"></script><p>Please change &lt;your_project&gt; to the name of your django app. This basically creates a script and places it in <code>/opt/elasticbeanstalk/hooks/appdeploy/post/</code></p><p>so that it executes <strong><strong>after</strong></strong> the application deploys. Now this script, in turn creates a supervisord conf script, which is responsible for running the daemon processes and managing the supervisord . (Again, please feel free to take a minute to grasp this :’) )</p><h3 id="4-the-final-step-configure-the-alb"><strong><strong>4. The final step: Configure the ALB</strong></strong></h3><p>Now we have our Redis set up, daphne and worker process running, now all we need to do is to configure our Application Load Balancer to forward the requests to our Daphne server which is listening on port 5000 (Please check the config script of the daemon processes).</p><p>Create a new file in your <code>.ebextensions</code> folder called <code>alb_listener.config</code>and place put the following code in.</p><pre><code>option_settings:  
+  aws:elbv2:listener:80:    
+    DefaultProcess: http    
+    ListenerEnabled: 'true'    
+    Protocol: HTTP  
+  aws:elasticbeanstalk:environment:process:http:    
+    Port: '5000'    
+    Protocol: HTTP</code></pre><p>Please be careful of the spaces as this is in YAML syntax.</p><p>Redeploy your app and Viola! your Django Channels app is up and running on AWS Elastic Beanstalk.</p><p>If you have any questions, please feel free to ask in the comments! Any recommendations for future blog posts is also welcome, if you like this one, that is. :’)</p><p>Thanks for reading!</p>
+                </div>
+            </section>
+
+            <section class="subscribe-form">
+                <h3 class="subscribe-form-title">Subscribe to The Code Journal</h3>
+                <p>Get the latest posts delivered right to your inbox</p>
+                <form method="post" action="http://localhost:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    
+<script>
+    (function(g,h,o,s,t){
+        var buster = function(b,m) {
+            h[o]('input.'+b).forEach(function (i) {
+                i.value=i.value || m;
+            });
+        };
+        buster('location', g.location.href);
+        buster('referrer', h.referrer);
+    })(window,document,'querySelectorAll','value');
+</script>
+
+</form>
+
+
+            </section>
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/abhishek/">Abhishek Menon</a></h4>
+            <p>Read <a href="../author/abhishek/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/abhishek/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+                <article class="post-card post">
+        <a class="post-card-image-link" href="../django-for-react-angular-mobile-apps/">
+            <div class="post-card-image" style="background-image: url(../content/images/2018/07/1_-EFe3VOUOn6cThHUBRSL2Q.jpeg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../django-for-react-angular-mobile-apps/">
+            <header class="post-card-header">
+                <h2 class="post-card-title">Django for React/Angular/Mobile Apps</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>This article is for people who fall in any of the following categories:You’re a front end developer coming from using a DBaaS platform like Firebase.You’re a Django developer, who</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Abhishek Menon
+                    </div>
+
+                        <a href="../author/abhishek/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">11 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>The Code Journal</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">Setting up Django Channels on AWS Elastic Beanstalk</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Setting%20up%20Django%20Channels%20on%20AWS%20Elastic%20Beanstalk&amp;url=http://localhost:2368/setting-up-django-channels-on-aws-elastic-beanstalk/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/setting-up-django-channels-on-aws-elastic-beanstalk/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">The Code Journal</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-overlay-close" href="index.html#"></a>
+        <div class="subscribe-overlay-content">
+            <h1 class="subscribe-overlay-title">Subscribe to The Code Journal</h1>
+            <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+            <form method="post" action="http://localhost:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    
+<script>
+    (function(g,h,o,s,t){
+        var buster = function(b,m) {
+            h[o]('input.'+b).forEach(function (i) {
+                i.value=i.value || m;
+            });
+        };
+        buster('location', g.location.href);
+        buster('referrer', h.referrer);
+    })(window,document,'querySelectorAll','value');
+</script>
+
+</form>
+
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=968d86cab0"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    
+
+</body>

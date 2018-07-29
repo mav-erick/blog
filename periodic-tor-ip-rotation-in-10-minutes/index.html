@@ -1,0 +1,450 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Periodic Tor IP Rotation in 10 minutes</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css?v=968d86cab0">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="The Code Journal">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Periodic Tor IP Rotation in 10 minutes">
+    <meta property="og:description" content="The approachWe will set up Tor, create a proxy service to tunnel our requests through tor, and use the STEM library to rotate the IP periodically.DownloadsProxy Server: http://www.privoxy.org/Tor: https://www.torproject.org/download/download-easy.html.enPython: https://www.python.org/downloads/Pip: https://pip.pypa.">
+    <meta property="og:url" content="http://localhost:2368/periodic-tor-ip-rotation-in-10-minutes/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2018/07/1_rB3ohibjixfGBtmtQn40PQ.jpeg">
+    <meta property="article:published_time" content="2018-06-19T14:41:00.000Z">
+    <meta property="article:modified_time" content="2018-07-29T04:45:42.000Z">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Periodic Tor IP Rotation in 10 minutes">
+    <meta name="twitter:description" content="The approachWe will set up Tor, create a proxy service to tunnel our requests through tor, and use the STEM library to rotate the IP periodically.DownloadsProxy Server: http://www.privoxy.org/Tor: https://www.torproject.org/download/download-easy.html.enPython: https://www.python.org/downloads/Pip: https://pip.pypa.">
+    <meta name="twitter:url" content="http://localhost:2368/periodic-tor-ip-rotation-in-10-minutes/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2018/07/1_rB3ohibjixfGBtmtQn40PQ.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Abhishek Menon">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="1000">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "The Code Journal",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Abhishek Menon",
+        "url": "http://localhost:2368/author/abhishek/",
+        "sameAs": []
+    },
+    "headline": "Periodic Tor IP Rotation in 10 minutes",
+    "url": "http://localhost:2368/periodic-tor-ip-rotation-in-10-minutes/",
+    "datePublished": "2018-06-19T14:41:00.000Z",
+    "dateModified": "2018-07-29T04:45:42.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2018/07/1_rB3ohibjixfGBtmtQn40PQ.jpeg",
+        "width": 2000,
+        "height": 1000
+    },
+    "description": "The approachWe will set up Tor, create a proxy service to tunnel our requests through tor, and use the STEM library to rotate the IP periodically.DownloadsProxy Server: http://www.privoxy.org/Tor: https://www.torproject.org/download/download-easy.html.enPython: https://www.python.org/downloads/Pip: https://pip.pypa.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="../public/ghost-sdk.js?v=968d86cab0"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "e693bfa48b4d"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="The Code Journal" href="../rss/index.html">
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">The Code Journal</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="subscribe-button" href="index.html#subscribe">Subscribe</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2018-06-19">19 June 2018</time>
+                </section>
+                <h1 class="post-full-title">Periodic Tor IP Rotation in 10 minutes</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(../content/images/2018/07/1_rB3ohibjixfGBtmtQn40PQ.jpeg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <h3 id="the-approach"><strong><strong>The approach</strong></strong></h3><p>We will set up Tor, create a proxy service to tunnel our requests through tor, and use the <code><a href="https://stem.torproject.org/" rel="noopener">STEM</a></code> library to rotate the IP periodically.</p><h3 id="downloads"><strong><strong>Downloads</strong></strong></h3><ol><li><strong><strong>Proxy Server</strong></strong>: <a href="http://www.privoxy.org/" rel="nofollow noopener">http://www.privoxy.org/</a></li><li><strong><strong>Tor</strong></strong>: <a href="https://www.torproject.org/download/download-easy.html.en" rel="nofollow noopener">https://www.torproject.org/download/download-easy.html.e</a>n</li><li><strong><strong>Python: </strong></strong><a href="https://www.python.org/downloads/" rel="nofollow noopener">https://www.python.org/downloads/</a></li><li><strong><strong>Pip: </strong></strong><a href="https://pip.pypa.io/en/stable/installing/" rel="nofollow noopener">https://pip.pypa.io/en/stable/installing/</a></li></ol><p>You probably have python and pip already installed. If you don’t, please follow the instructions in the link.</p><p>Both Privoxy and Tor has excellent installation guides for all major OSes, please follow that in the link to set it up correctly.</p><h3 id="configuration"><strong><strong>Configuration</strong></strong></h3><p>Open privoxy config <code>sudo vi /usr/local/etc/privoxy/config</code> (The path might be different for Linux/Windows)</p><p>Append the following line. Notice the . in the end.</p><pre><code>forward-socks5   /               127.0.0.1:9150 .</code></pre><p>Restart privoxy</p><pre><code>sudo /path/to/Privoxy/stopPrivoxy.sh
+sudo /path/to/Privoxy/startPrivoxy.sh</code></pre><h4 id="install-stem-library">Install stem library</h4><p>Stem library will be used for managing Tor using Python.</p><p><code>pip install stem</code></p><p>Now, find the torrc file of your Tor installation for your respective operating system.</p><p>Current location in Mac OSX is:</p><pre><code>~/Library/Application Support/TorBrowser-Data/Tor/torrc</code></pre><p>Once you find it, modify it to add a control port by appending the following lines to the file:</p><pre><code>ControlPort 9051
+## If you enable the controlport, be sure to enable one of these
+## authentication methods, to prevent attackers from accessing it.
+HashedControlPassword 16:872860B76453A77D60CA2BB8C1A7042072093276A3D701AD684053EC4C</code></pre><p>Save the file and restart Tor.</p><h3 id="test-the-setup">Test the setup</h3><p>To test your tor setup, use the following script:</p><pre><code>import requests
+from stem import Signal
+from stem.control import Controller
+
+with Controller.from_port(port = 9051) as controller:
+  controller.authenticate()
+  controller.signal(Signal.NEWNYM)
+
+proxies = {
+  "http": "http://127.0.0.1:8118"
+}
+headers = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.73.11 (KHTML, like Gecko) Version/7.0.1 Safari/537.73.11'
+}
+
+r = requests.get("http://icanhazip.com", proxies=proxies, headers=headers)
+print (r.text)</code></pre><p>Everytime you run this, you should see a new IP.</p><h3 id="periodic-ip-rotation"><strong><strong>Periodic IP rotation</strong></strong></h3><p>The following script autorotates the IP periodically. Let’s call this <code>rotate.py</code></p><pre><code>import time
+from stem import Signal
+from stem.control import Controller
+
+def main():
+    while True:
+        time.sleep(20)
+        print ("Rotating IP")
+        with Controller.from_port(port = 9051) as controller:
+          controller.authenticate()
+          controller.signal(Signal.NEWNYM)
+
+
+if __name__ == '__main__':
+    main()</code></pre><p>Before you start up your scraper, you can run <code>rotate.py</code> so that it keeps rotating your Tor IP. In your crawler, use the following proxies and headers to tunnel your requests through the tor proxy.</p><pre><code>proxies = {
+  "http": "http://127.0.0.1:8118"
+}
+
+headers = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.73.11 (KHTML, like Gecko) Version/7.0.1 Safari/537.73.11'
+}
+
+r = requests.get("&lt;request-url&gt;", proxies=proxies, headers=headers)</code></pre><p>That’s it! You have successfully set up periodic IP rotation. Thanks for reading!</p>
+                </div>
+            </section>
+
+            <section class="subscribe-form">
+                <h3 class="subscribe-form-title">Subscribe to The Code Journal</h3>
+                <p>Get the latest posts delivered right to your inbox</p>
+                <form method="post" action="http://localhost:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    
+<script>
+    (function(g,h,o,s,t){
+        var buster = function(b,m) {
+            h[o]('input.'+b).forEach(function (i) {
+                i.value=i.value || m;
+            });
+        };
+        buster('location', g.location.href);
+        buster('referrer', h.referrer);
+    })(window,document,'querySelectorAll','value');
+</script>
+
+</form>
+
+
+            </section>
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/abhishek/">Abhishek Menon</a></h4>
+            <p>Read <a href="../author/abhishek/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/abhishek/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+                <article class="post-card post tag-angular tag-custom-directives tag-javascript">
+        <a class="post-card-image-link" href="../custom-directives/">
+            <div class="post-card-image" style="background-image: url(../content/images/2018/07/1_WNeChyJ5f8nwVue8hkZEPg-1.gif)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../custom-directives/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">Angular</span>
+                <h2 class="post-card-title">Custom directives in Angular 6 — building a Google places autocomplete</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>Final Project: http://ng-places-maverick.surge.sh/I have been playing around with Angular a lot lately and a lot of things that seemed unnecessary in the beginning is starting to make sense. Angular</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Abhishek Menon
+                    </div>
+
+                        <a href="../author/abhishek/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">5 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post">
+        <a class="post-card-image-link" href="../django-for-react-angular-mobile-apps/">
+            <div class="post-card-image" style="background-image: url(../content/images/2018/07/1_-EFe3VOUOn6cThHUBRSL2Q.jpeg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../django-for-react-angular-mobile-apps/">
+            <header class="post-card-header">
+                <h2 class="post-card-title">Django for React/Angular/Mobile Apps</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>This article is for people who fall in any of the following categories:You’re a front end developer coming from using a DBaaS platform like Firebase.You’re a Django developer, who</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Abhishek Menon
+                    </div>
+
+                        <a href="../author/abhishek/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">11 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>The Code Journal</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">Periodic Tor IP Rotation in 10 minutes</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Periodic%20Tor%20IP%20Rotation%20in%2010%20minutes&amp;url=http://localhost:2368/periodic-tor-ip-rotation-in-10-minutes/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/periodic-tor-ip-rotation-in-10-minutes/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">The Code Journal</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-overlay-close" href="index.html#"></a>
+        <div class="subscribe-overlay-content">
+            <h1 class="subscribe-overlay-title">Subscribe to The Code Journal</h1>
+            <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+            <form method="post" action="http://localhost:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    
+<script>
+    (function(g,h,o,s,t){
+        var buster = function(b,m) {
+            h[o]('input.'+b).forEach(function (i) {
+                i.value=i.value || m;
+            });
+        };
+        buster('location', g.location.href);
+        buster('referrer', h.referrer);
+    })(window,document,'querySelectorAll','value');
+</script>
+
+</form>
+
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=968d86cab0"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    
+
+</body>

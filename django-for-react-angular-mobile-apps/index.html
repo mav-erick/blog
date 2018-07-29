@@ -1,0 +1,418 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Django for React/Angular/Mobile Apps</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css?v=968d86cab0">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="The Code Journal">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Django for React/Angular/Mobile Apps">
+    <meta property="og:description" content="This article is for people who fall in any of the following categories:You’re a front end developer coming from using a DBaaS platform like Firebase.You’re a Django developer, who recently picked up React/Angular, or started playing with mobile apps.You’re a beginner front end">
+    <meta property="og:url" content="http://localhost:2368/django-for-react-angular-mobile-apps/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2018/07/1_-EFe3VOUOn6cThHUBRSL2Q.jpeg">
+    <meta property="article:published_time" content="2018-03-20T13:02:00.000Z">
+    <meta property="article:modified_time" content="2018-07-29T04:40:37.000Z">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Django for React/Angular/Mobile Apps">
+    <meta name="twitter:description" content="This article is for people who fall in any of the following categories:You’re a front end developer coming from using a DBaaS platform like Firebase.You’re a Django developer, who recently picked up React/Angular, or started playing with mobile apps.You’re a beginner front end">
+    <meta name="twitter:url" content="http://localhost:2368/django-for-react-angular-mobile-apps/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2018/07/1_-EFe3VOUOn6cThHUBRSL2Q.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Abhishek Menon">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="1374">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "The Code Journal",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Abhishek Menon",
+        "url": "http://localhost:2368/author/abhishek/",
+        "sameAs": []
+    },
+    "headline": "Django for React/Angular/Mobile Apps",
+    "url": "http://localhost:2368/django-for-react-angular-mobile-apps/",
+    "datePublished": "2018-03-20T13:02:00.000Z",
+    "dateModified": "2018-07-29T04:40:37.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2018/07/1_-EFe3VOUOn6cThHUBRSL2Q.jpeg",
+        "width": 1600,
+        "height": 1374
+    },
+    "description": "This article is for people who fall in any of the following categories:You’re a front end developer coming from using a DBaaS platform like Firebase.You’re a Django developer, who recently picked up React/Angular, or started playing with mobile apps.You’re a beginner front end",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="../public/ghost-sdk.js?v=968d86cab0"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "e693bfa48b4d"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="The Code Journal" href="../rss/index.html">
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">The Code Journal</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="subscribe-button" href="index.html#subscribe">Subscribe</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2018-03-20">20 March 2018</time>
+                </section>
+                <h1 class="post-full-title">Django for React/Angular/Mobile Apps</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(../content/images/2018/07/1_-EFe3VOUOn6cThHUBRSL2Q.jpeg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <p>This article is for people who fall in any of the following categories:</p><ol><li>You’re a front end developer coming from using a DBaaS platform like Firebase.</li><li>You’re a Django developer, who recently picked up React/Angular, or started playing with mobile apps.</li><li>You’re a beginner front end developer, and you are intimidated by the complexity of backend development.</li><li>You want to use a matured framework to build your backend services.</li></ol><p>Django is a high level web framework written in Python, and has been around for many years now. Hence it is very stable, and has a lot of resources online if you ever get stuck.</p><p><strong><strong>Why is using Django alongside Angular, React or a Mobile SDK not straightforward?</strong></strong></p><p>Django is a full stack web framework, which means it comes with its own ORM, templating engine etc and it is built so that the entire application runs as a single service. But if you’re using a frontend framework, or a mobile SDK, it is designed so that the client/frontend is completely decoupled from the backend.</p><figure class="kg-image-card"><img src="../content/images/2018/07/1_EpimmBm0H2UBGhDxMKUiyA.png" class="kg-image"></figure><p><strong><strong>Then what’s the point of using Django?</strong></strong></p><p>We don’t need to use all of Django’s features to get the best out of it. Infact one of the major weaknesses of Django is that it is not really built for Web 2.0. But this has more to do with frontend than backend. And these weaknesses are easily addressed by the front end frameworks, bringing in all that is required for Web 2.0 to Django. Hence we are getting the best of both worlds using Django just in the backend! The only missing piece in the puzzle is a REST based communication architecture between the frontend and backend, that can facilitate complete decoupling. <a href="http://www.django-rest-framework.org/" rel="noopener">Django REST Framework</a> does just that.</p><p><strong><strong>Proposed Architecture</strong></strong></p><figure class="kg-image-card"><img src="../content/images/2018/07/1_9SmHhzWDXBCpRi3CpQKowg.png" class="kg-image"></figure><p>Evidently, this setup will work for any Mobile/Frontend framework.</p><p>In this article, we are only going to cover what we need in Django. Django is a fairly large framework, and covering all parts of it is out of the scope of this article. However, I will try to cover the basic concepts you need to know.</p><p>If you already know Django, please feel free to skip to the section <strong><strong>‘Our first Django app’</strong></strong>.</p><p><strong><strong>Getting started with Django</strong></strong></p><p>Before we get started, you need to have python and pip installed on your system. If you don’t, please go ahead and install it before you continue. We are going to use Python 3.6 in this article. To start working on our project, let’s create a virtual environment called <code>mobileBackend</code>. If you don’t have virtualenv installed, install it by running <code>pip install virtualenv</code>. Then run:</p><pre><code>virtualenv -p python3 mobileBackend &amp;&amp; cd mobileBackend
+source bin/activate</code></pre><p>These commands will create a virtual environment called mobileBackend, using Python 3 as the default python interpreter, open the directory, and activate the virtual environment. Django doesn’t have a package manager, hence we use a virtual environment to manage the package dependencies. We can get a list of all dependencies by running <code>pip freeze</code>.</p><p><strong><strong>Installing Django and Django Rest Framework</strong></strong></p><p>pip install django djangorestframework</p><p>Django Rest Framework, is a library, which makes it easier for us to work with REST APIs in Django.</p><p>Now let’s create our Django project. We will call our Django project with the same name as our virtual environment. You can choose any name you want for your project and virtual environment. Here, we are going to call both mobileBackend. Run:</p><pre><code>django-admin startproject mobileBackend &amp;&amp; cd mobileBackend</code></pre><p>This command creates our Django project called mobileBackend and opens the mobileBackend directory.</p><p>Here you would see two things:</p><ol><li>manage.py (File)</li><li>mobileBackend (Folder)</li></ol><p>To understand what these mysterious things are, we need to first explore how Django is structured. A Django project is a collection of apps and configuration. An app in Django is a unit of the project that has a defined purpose — e.g., If you’re building a Blog, its apps could be articles, users, activities etc. As a general rule of thumb, an app in a Django project should be something that you can describe one sentence. Ex: Users app manages all the users of the website.</p><p>When you create your project, Django by default creates an app with the same name as the project as an entry point to the project. That is why there is a folder with the same name as your project. And <code>manage.py</code> is a command line utility, using which you can interact with your Django project.</p><p>Let’s give this a shot.</p><p><strong><strong>Running the Django development server</strong></strong></p><p>Run your Django development server using:</p><pre><code>python manage.py runserver</code></pre><p>You’ll see the following output on your terminal.</p><h4 id="performing-system-checks-">Performing system checks…</h4><h4 id="system-check-identified-no-issues-0-silenced-">System check identified no issues (0 silenced).</h4><h4 id="you-have-14-unapplied-migration-s-your-project-may-not-work-properly-until-you-apply-the-migrations-for-app-s-admin-auth-contenttypes-sessions-">You have 14 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.</h4><h4 id="run-python-manage-py-migrate-to-apply-them-">Run ‘python manage.py migrate’ to apply them.</h4><h4 id="march-18-2018-21-35-59">March 18, 2018–21:35:59</h4><h4 id="django-version-2-0-3-using-settings-mobilebackend-settings-">Django version 2.0.3, using settings ‘mobileBackend.settings’</h4><h4 id="starting-development-server-at-http-127-0-0-1-8000-">Starting development server at <a href="http://127.0.0.1:8000/" rel="noopener">http://127.0.0.1:8000/</a></h4><h4 id="quit-the-server-with-control-c-">Quit the server with CONTROL-C.</h4><p></p><p>You can access your development server by going to <a href="https://localhost:8000/">http://localhost:8000/</a> in your browser. You’ll see the following page if everything goes well…</p><figure class="kg-image-card"><img src="../content/images/2018/07/1_GTeVJHj9f2Bude8t12wWaQ.png" class="kg-image"></figure><p>Nice, but you would have seen a warning when you started the development server. It said you have unapplied migrations. Please don’t be thrown off by the buzz words, it is surprisingly simple.</p><p><strong><strong>Model migrations</strong></strong></p><p>When you’re using Django, you don’t need to write SQL commands. Yes, for real. When you create a Django project, Django automatically creates a SQLite database for us. Now you can change the DB to whatever you want, but you will be interacting with the DB through Django’s ORM. This means that you will represent the tables in the databases as classes and entries in the table as objects. These classes which represents the database tables are called <strong><strong>models</strong></strong>in Django.</p><p>When you create or modify a model, you need to tell Django to create the SQL commands required to reflect the changes on the database. This process is called a <strong><strong>migration</strong></strong>.</p><p>A migration is a two step process. First, we need to create the migrations, and then apply the migrations.</p><p>You can create migrations using :</p><pre><code>python manage.py makemigrations</code></pre><p>And you apply the migrations using:</p><pre><code>python manage.py migrate</code></pre><p>When you create a Django project, Django creates a few models for us, and also creates the corresponding migrations. Now all we need to do is apply those migrations, which we haven’t done. This is why Django is giving us a warning that the migrations need to be applied. Let’s go back to the terminal and press Ctrl+C to stop the server and apply the migrations by running <code>python manage.py migrate</code>. Now if you run <code>python manage.py runserver</code>again, you’ll see the warnings disappeared! Awesome!</p><p><strong><strong>Django apps</strong></strong></p><p>Now let’s explore the contents of the app Django created for us.</p><pre><code>cd mobileBackend</code></pre><p>If you open the folder <code>mobileBackend</code> in your project directory, you’ll find the following files.</p><ol><li>__init__.py</li><li>settings.py</li><li>urls.py</li><li>wsgi.py</li></ol><p>The two files that are useful to us is <strong><strong>settings.py</strong></strong> and <strong><strong>urls.py</strong></strong>. If you are keen on understanding the importance of each file fully, please read the official docs <a href="https://docs.djangoproject.com/en/2.0/intro/tutorial01/" rel="noopener">here</a>.</p><p><strong><strong>settings.py</strong></strong> holds all the configuration related to our project. And <strong><strong>urls.py</strong></strong> is the list of URL endpoints in our project. We will touch both of these files later in the article.</p><p><strong><strong>Our first Django app</strong></strong></p><p>Let’s go back to the root of the project and create our first Django app. In this example, let’s create a simple app which shows a list of movie actors.</p><p>cd ..<br>python manage.py startapp actors</p><p><code>startapp</code> is a management command that creates a Django app for us. Here we have created an app called actors. Let’s explore the contents of the app.</p><pre><code>cd actors</code></pre><p>As you can see Django creates an app structure for us. This is an excellent time saver, and also ensures we follow best practices when it comes to structuring our applications. Let’s see the files that are useful to us for this article.</p><ol><li><code>models.py</code> — This file holds all the models of the app.</li><li><code>views.py</code> — This file is a collection of functions which gets executed when a request to a URL endpoint is made. For each endpoint, we can specify which function to execute. We will only have the functions for the endpoints associated with the app in its <code>views.py</code></li></ol><p>Now let’s create our first model. Open your <code>actors/models.py</code> file.</p><script src="https://gist.github.com/mav-erick/0c1122be32d85e9a9f982837f2a6f011.js"></script><p>So we have created 4 fields for the actor model: <code>first_name</code>, <code>last_name</code>, <code>dp</code>, <code>age</code>. <code>CharField</code> is Django’s way of saying that the values of this field will contain characters. <code>max_length</code> attribute specifies the maximum number of characters allowed. <code>blank=True</code> and <code>null=True</code> says that empty and null values are allowed. <code>IntegerField</code> can only contain integer values, hence it is suitable for age. The syntax is really simple, isn’t it?</p><p>Cool! Now we have our first model. Earlier in the article, I said when we create or change a model, we should create and apply migrations. Let’s go ahead and do that. In your terminal,</p><pre><code>python manage.py makemigrations</code></pre><p>The output says ‘No changes detected’. What? How is this possible? We just created a model in our actors app!</p><p>There is just one problem.</p><p>When we create a Django app, Django doesn’t automatically include the app in the project. I know, that is weird. To tell Django that the app is a part of the project, we need to include the app in the <code>INSTALLED_APPS</code> list in the <code>settings.py</code> file. This applies to all apps we create, and also the third party libraries we install on our Django project. When we installed Django, we also installed Django Rest Framework. We need to add that to the <code>INSTALLED_APPS</code>as well.</p><p>Let’s do that now.</p><pre><code>cd mobileBackend</code></pre><p>Open settings.py, and find the list of <code>INSTALLED_APPS</code>.</p><script src="https://gist.github.com/mav-erick/666792173f98ceca5cd518e4f62adab2.js"></script><p>Let’s try applying migrations again.</p><p>Go to terminal and navigate to the root of your project and run:</p><pre><code>python manage.py makemigrations
+python manage.py migrate</code></pre><p>Awesome! Now let’s create some actors. <code>manage.py</code> comes with a shell, which gives us access to our models in our Django project. To use the shell, from the terminal, run:</p><pre><code>python manage.py shell</code></pre><p>Let’s create some actors!</p><pre><code>from actors.models import Actor
+
+actor1 = Actor(first_name="Tom",last_name="Cruise",dp="https://ia.media-imdb.com/images/M/MV5BMTk1MjM3NTU5M15BMl5BanBnXkFtZTcwMTMyMjAyMg@@._V1_UY317_CR14,0,214,317_AL_.jpg",age=55)
+
+actor1.save()
+
+actor2 = Actor(first_name="Hugh",last_name="Jackman",dp="https://images-na.ssl-images-amazon.com/images/M/MV5BNDExMzIzNjk3Nl5BMl5BanBnXkFtZTcwOTE4NDU5OA@@._V1_UX214_CR0,0,214,317_AL_.jpg",age=49)
+
+actor2.save()</code></pre><p>That was fairly straightforward. Before exiting the shell, let’s verify if the objects were actually saved. You can access all objects of the Actor model using:</p><p><code>Actor.objects.all()</code></p><p>This will give the following response:</p><h4 id="queryset-actor-actor-object-1-actor-actor-object-2-">&lt;QuerySet [&lt;Actor: Actor object (1)&gt;, &lt;Actor: Actor object (2)&gt;]&gt;</h4><p></p><p><strong><strong>Django QuerySets</strong></strong></p><p>A <strong><strong>QuerySet</strong></strong> represents a collection of objects from your database. It can have zero, one or many filters. Filters narrow down the query results based on the given parameters. In SQL terms, a QuerySet equates to a SELECT statement, and a filter is a limiting clause such as WHERE or LIMIT. In this example when we do <code>Actor.objects.all()</code> we are selecting all elements from the Actor table without any filters.</p><p>An example of a filter would be: <code>Actor.objects.filter(age = 40)</code></p><p>Now that we have verified that our objects are in the database, let’s exit the shell by using Ctrl+D.</p><p>Now, let’s create an API endpoint, so that our frontend app can access the actors. Navigate to the <code>urls.py</code> file in <code>mobileBackend</code> app.</p><script src="https://gist.github.com/mav-erick/2b6d88de484c2d725ec217ddc325579c.js"></script><p>There is a very useful docstring describing how urls.py should be used. Django has added an <code>'admin/'</code> route by default for us. We have created a new route called <code>'fetch_actors/'</code>. We are also importing a function called <code>fetch_actors</code> from <code>actors.views</code>. We have not created this function as of now, but we will use this function to process the request and create a response. Let’s see what is happening here.</p><p>Whenever a user makes a request, Django first looks at this <code>urls.py</code> file, and checks for a match between the request URL and the <code>urlpatterns</code> specified here. If it find a match, it sends the request to the corresponding view function of that URL. A view function takes the request as an input, and produces a response. We don’t have the view function yet. So let’s create one.</p><p>Open <code>actors/views.py</code> in your project. We have named our function <code>fetch_actors</code> in <code>urls.py</code>. We should give the function the same name.</p><script src="https://gist.github.com/mav-erick/ddaec7067712c7e15682bdb26d8e8a8d.js"></script><p>Here, we are doing two additional imports. <code>HttpResponse</code> and <code>Actor</code> model. HttpResponse is a Django built in function which lets us send back Http responses. Pretty self explanatory isn’t it. We have also imported the <code>Actor</code>model so that we fetch all the actor objects and send it as a response.</p><p>Let’s try visiting the URL. Please start your server, if it is not running, and go to <code><a href="http://localhost:8000/fetch_actors/">http://localhost:8000/fetch_actors/</a></code><a href="http://localhost:8000/fetch_actors/">.</a> You’ll see something like this:</p><figure class="kg-image-card"><img src="../content/images/2018/07/1_UH2Gg6uhC-T8IDG0Rtkn5g.png" class="kg-image"></figure><p>Hmmm.. It definitely did the right thing, but this is not very useful to use isn’t it? If our frontend client were to make this request and if it gets this response, it won’t be useful at all. Just like how for two people to speak with each other, they both need to know the same language, frontend client and backend service should also speak the same language, so that the response is useful for the frontend client. And that language, in our case is, yes, you guessed it, JSON. Now how do we convert a QuerySet to JSON? Enter Django Rest Framework. This can be done using something called as a <strong><strong>serializer.</strong></strong></p><p><strong><strong>Serializers</strong></strong></p><p>Again, it is just a fancy name for something very simple. A serializer represents Django models as JSON objects. There is no better way to understand this than writing some code. So we will do just that.</p><p>Let’s create a new file called <code>serializers.py</code> in our <code>actors</code> app.</p><script src="https://gist.github.com/mav-erick/77580e1b9186e67a0b1c750e95dacbd7.js"></script><p>We are using <code>rest_framework</code>'s default <code>ModelSerializer</code>. All we need to do is create a class <code>ActorSerializer</code> and specify the name of the model we want to serialize, and the fields that are required from the model as a list. You can also pass <code>'__all__'</code> if you want to include all the fields. Now we can use this serializer in our view function to send the response as JSON.</p><p>Let’s modify <code>actors/views.py</code> as follows:</p><script src="https://gist.github.com/mav-erick/98199e66e291d5874498f31267d409c0.js"></script><p>We are importing the <code>ActorSerializer</code> we just created. We are also importing two other things, an <code>api_view</code> decorator, and we have replaced <code>HttpResponse</code>from Django to the one from <code>rest_framework</code>. The <code>api_view</code> decorator wraps our view function to add the additional processing required from the <code>rest_framework</code>. We also need to specify the allowed request methods, in our case, we only allow <code>get</code> requests. The additional step between fetching the actor objects and returning the response to the user is the step where we are serializing the QuerySet to JSON with our <code>ActorSerializer</code>. <code>many=True</code> tells the serializer that there are potentially more than one object in the QuerySet. Once serialized, the JSON representation is available in <code>serializer.data</code>. Hence we are sending that as a the response.Let’s trying checking our URL again.Goto <code><a href="http://localhost:8000/fetch_actors/">http://localhost:8000/fetch_actors/</a></code> and you’ll see something like this.</p><figure class="kg-image-card"><img src="../content/images/2018/07/1_NQZPw0FFuWcbyHyyULRAMw.png" class="kg-image"></figure><p>Look at that! Nice, clean, JSON. Exactly what we wanted. In a few lines of code, we have</p><ol><li>Created a project and set up our first Django app.</li><li>Created a model to store the actors.</li><li>Created an API endpoint for our frontend client to consume.</li><li>Set up a view function to respond to the API request in JSON format.</li></ol><p>Hopefully, I have convinced you to use this architecture for your next project. Please feel free to ask any questions if you get stuck.</p><p>Thanks for reading!</p>
+                </div>
+            </section>
+
+            <section class="subscribe-form">
+                <h3 class="subscribe-form-title">Subscribe to The Code Journal</h3>
+                <p>Get the latest posts delivered right to your inbox</p>
+                <form method="post" action="http://localhost:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    
+<script>
+    (function(g,h,o,s,t){
+        var buster = function(b,m) {
+            h[o]('input.'+b).forEach(function (i) {
+                i.value=i.value || m;
+            });
+        };
+        buster('location', g.location.href);
+        buster('referrer', h.referrer);
+    })(window,document,'querySelectorAll','value');
+</script>
+
+</form>
+
+
+            </section>
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/abhishek/">Abhishek Menon</a></h4>
+            <p>Read <a href="../author/abhishek/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/abhishek/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+                <article class="post-card post">
+        <a class="post-card-image-link" href="../periodic-tor-ip-rotation-in-10-minutes/">
+            <div class="post-card-image" style="background-image: url(../content/images/2018/07/1_rB3ohibjixfGBtmtQn40PQ.jpeg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../periodic-tor-ip-rotation-in-10-minutes/">
+            <header class="post-card-header">
+                <h2 class="post-card-title">Periodic Tor IP Rotation in 10 minutes</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>The approachWe will set up Tor, create a proxy service to tunnel our requests through tor, and use the STEM library to rotate the IP periodically.DownloadsProxy Server: http://www.privoxy.org/Tor:</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Abhishek Menon
+                    </div>
+
+                        <a href="../author/abhishek/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-django tag-aws tag-elastic-beanstalk tag-django-channels">
+        <a class="post-card-image-link" href="../setting-up-django-channels-on-aws-elastic-beanstalk/">
+            <div class="post-card-image" style="background-image: url(../content/images/2018/07/photo-1518481852452-9415b262eba4.jpeg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../setting-up-django-channels-on-aws-elastic-beanstalk/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">Django</span>
+                <h2 class="post-card-title">Setting up Django Channels on AWS Elastic Beanstalk</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>Step by step guide to host a Django Channels application on AWS Elastic Beanstalk.</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Abhishek Menon
+                    </div>
+
+                        <a href="../author/abhishek/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">6 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>The Code Journal</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">Django for React/Angular/Mobile Apps</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Django%20for%20React%2FAngular%2FMobile%20Apps&amp;url=http://localhost:2368/django-for-react-angular-mobile-apps/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/django-for-react-angular-mobile-apps/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">The Code Journal</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-overlay-close" href="index.html#"></a>
+        <div class="subscribe-overlay-content">
+            <h1 class="subscribe-overlay-title">Subscribe to The Code Journal</h1>
+            <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+            <form method="post" action="http://localhost:2368/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"><input class="location" type="hidden" name="location"><input class="referrer" type="hidden" name="referrer">
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email" placeholder="youremail@example.com">
+    </div>
+    <button class="" type="submit"><span>Subscribe</span></button>
+    
+<script>
+    (function(g,h,o,s,t){
+        var buster = function(b,m) {
+            h[o]('input.'+b).forEach(function (i) {
+                i.value=i.value || m;
+            });
+        };
+        buster('location', g.location.href);
+        buster('referrer', h.referrer);
+    })(window,document,'querySelectorAll','value');
+</script>
+
+</form>
+
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=968d86cab0"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    
+
+</body>
